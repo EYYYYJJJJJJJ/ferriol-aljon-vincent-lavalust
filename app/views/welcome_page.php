@@ -709,7 +709,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
     <div class="wrap">
         <div class="section-label">// project structure</div>
         <h2 class="section-title">Organized by default.</h2>
-        <p class="section-desc">A predictable directory layout so every file has a logical home from day one.</p>
+        <p class="section-desc">A predictable directory layout so every file has a logical home from day one</p>
 
         <div class="structure-grid">
             <?php
