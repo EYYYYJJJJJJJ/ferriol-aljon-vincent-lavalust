@@ -17,6 +17,10 @@ runtime/*
 *.log
 *.cache
 
+# Local artifacts
+/tmp/
+/output/
+
 # IDE
 .idea/
 .vscode/
