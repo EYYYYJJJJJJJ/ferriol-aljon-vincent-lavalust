@@ -61,9 +61,10 @@ $database['main'] = array(
     'driver'	=> '',
     'hostname'	=> getenv('DB_HOST') ?: '',
     'port'		=> getenv('DB_PORT') ?: '',
-    'username'	=> getenv('DB_USERNAME') ?: '',
+    'username'	=> getenv('DB_USERNAME') ?: (getenv('DB_USER') ?: ''),
     'password'	=> getenv('DB_PASSWORD') ?: '',
-    'database'	=> getenv('DB_NAME') ?: '',
+    'database'	=> getenv('DB_DATABASE') ?: (getenv('DB_NAME') ?: ''),
+    'ssl_ca'    => getenv('DB_SSL_CA') ?: '',
     'charset'	=> '',
     'dbprefix'	=> '',
     // Optional for SQLite
