@@ -18,7 +18,7 @@ class AuthController extends Controller
             $expected_password = (string) (getenv('AUTH_PASSWORD') ?: 'admin123');
 
             if ($username === $expected_username && hash_equals($expected_password, $password)) {
-                $this->session->regenerate_id();
+                $this->session->regenerate_on_login();
                 $this->session->set_userdata('authenticated_user', $username);
                 redirect('products', false, false);
                 return;
