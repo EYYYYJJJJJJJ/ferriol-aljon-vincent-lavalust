@@ -51,3 +51,13 @@ $router->get('/student', 'StudentController::index');
 $router->get('/student/profile', 'StudentController::profile')
        ->middleware('student_access');
 $router->get('/users', 'UsersController::index');
+$router->match('/login', 'AuthController::login', 'GET|POST');
+$router->get('/logout', 'AuthController::logout');
+$router->get('/products', 'ProductController::index')->middleware('product_auth');
+$router->match('/products/create', 'ProductController::create', 'GET|POST')->middleware('product_auth');
+$router->match('/products/edit/{id}', 'ProductController::edit', 'GET|POST')
+       ->where_number('id')
+       ->middleware('product_auth');
+$router->post('/products/delete/{id}', 'ProductController::delete')
+       ->where_number('id')
+       ->middleware('product_auth');
