@@ -15,28 +15,36 @@ $profile_url = $escape(site_url('student/profile'));
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $escape($title) ?></title>
     <style>
-        :root { font-family: Arial, sans-serif; color: #18243a; background: #f6f3ee; }
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Space+Grotesk:wght@600;700&display=swap');
+        :root { font-family: 'DM Sans', sans-serif; color: #f7f7ff; background: #090914; }
         * { box-sizing: border-box; }
-        body { margin: 0; min-height: 100vh; background: radial-gradient(circle at top right, #ffe5c7, transparent 34%), #f6f3ee; }
-        .shell { width: min(900px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 44px; }
-        .nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 44px; }
-        .brand { color: #18243a; font-size: 1.05rem; font-weight: 800; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
-        .links { display: flex; gap: 8px; flex-wrap: wrap; }
-        .links a { color: #8e512d; border: 1px solid #ddb99a; border-radius: 999px; padding: 9px 14px; text-decoration: none; font-size: .9rem; }
-        .links a:hover, .links a.active { background: #8e512d; color: #fff; }
-        .profile { display: grid; grid-template-columns: 190px 1fr; overflow: hidden; border-radius: 24px; box-shadow: 0 20px 55px rgba(129, 83, 49, .15); background: #fffdf9; }
-        .sidebar { display: flex; min-height: 480px; flex-direction: column; justify-content: space-between; padding: 28px; color: #fff; background: #8e512d; }
-        .monogram { display: grid; width: 84px; height: 84px; place-items: center; border: 1px solid rgba(255,255,255,.55); border-radius: 50%; font-size: 2rem; font-weight: 800; }
-        .sidebar small { color: #ffe2cc; line-height: 1.7; }
-        .content { padding: clamp(28px, 6vw, 64px); }
-        .eyebrow { color: #c16f3d; font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
-        h1 { margin: 14px 0 10px; color: #18243a; font-size: clamp(2rem, 5vw, 4rem); line-height: 1; }
-        .lead { color: #667085; line-height: 1.7; }
-        .details { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 30px 0 0; }
-        .details div { padding: 16px; border: 1px solid #eadfd4; border-radius: 12px; background: #fff8f0; }
-        dt { color: #9a755d; font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-        dd { margin: 7px 0 0; color: #18243a; font-weight: 700; line-height: 1.4; }
-        @media (max-width: 680px) { .nav { align-items: flex-start; flex-direction: column; } .profile { grid-template-columns: 1fr; } .sidebar { min-height: 0; gap: 28px; } .details { grid-template-columns: 1fr; } }
+        body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 85% 10%, rgba(236,72,153,.25), transparent 28%), radial-gradient(circle at 10% 90%, rgba(139,92,246,.3), transparent 32%), #090914; }
+        .shell { width: min(1100px, calc(100% - 40px)); margin: 0 auto; padding: 30px 0 54px; }
+        .nav { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 52px; }
+        .brand { display: flex; align-items: center; gap: 12px; color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: .9rem; font-weight: 700; letter-spacing: .13em; text-decoration: none; text-transform: uppercase; }
+        .brand::before { content: 'AF'; display: grid; width: 40px; height: 40px; place-items: center; border-radius: 12px; background: linear-gradient(135deg, #ec4899, #8b5cf6); color: #fff; letter-spacing: 0; box-shadow: 0 0 30px rgba(236,72,153,.35); }
+        .links { display: flex; gap: 7px; padding: 5px; border: 1px solid rgba(255,255,255,.1); border-radius: 14px; background: rgba(255,255,255,.05); }
+        .links a { color: #aaaabd; border-radius: 10px; padding: 10px 16px; text-decoration: none; font-size: .88rem; font-weight: 700; }
+        .links a:hover, .links a.active { background: #fff; color: #10101c; }
+        .profile { position: relative; display: grid; grid-template-columns: 310px 1fr; overflow: hidden; border: 1px solid rgba(255,255,255,.12); border-radius: 30px; background: rgba(18,17,38,.78); box-shadow: 0 36px 100px rgba(0,0,0,.42); backdrop-filter: blur(22px); }
+        .sidebar { position: relative; display: flex; min-height: 610px; flex-direction: column; justify-content: space-between; padding: 38px; overflow: hidden; background: linear-gradient(155deg, #ec4899, #7c3aed 58%, #312e81); }
+        .sidebar::after { content: ''; position: absolute; width: 330px; height: 330px; right: -190px; bottom: 40px; border: 55px solid rgba(255,255,255,.1); border-radius: 50%; }
+        .monogram { position: relative; z-index: 1; display: grid; width: 112px; height: 112px; place-items: center; border: 1px solid rgba(255,255,255,.35); border-radius: 30px; background: rgba(255,255,255,.12); font-family: 'Space Grotesk', sans-serif; font-size: 2.7rem; font-weight: 700; box-shadow: inset 0 1px 0 rgba(255,255,255,.25); }
+        .identity { position: relative; z-index: 1; }
+        .identity strong { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; line-height: 1.15; }
+        .identity small { display: block; margin-top: 12px; color: rgba(255,255,255,.72); line-height: 1.6; }
+        .verified { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 8px; width: fit-content; margin-top: 22px; padding: 9px 12px; border: 1px solid rgba(255,255,255,.23); border-radius: 999px; background: rgba(0,0,0,.12); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+        .verified::before { content: '✓'; display: grid; width: 18px; height: 18px; place-items: center; border-radius: 50%; background: #fff; color: #7c3aed; }
+        .content { padding: clamp(36px, 6vw, 72px); }
+        .eyebrow { color: #f9a8d4; font-size: .76rem; font-weight: 700; letter-spacing: .17em; text-transform: uppercase; }
+        h1 { margin: 18px 0 14px; font-family: 'Space Grotesk', sans-serif; font-size: clamp(3rem, 6vw, 5.7rem); letter-spacing: -.065em; line-height: .9; }
+        .lead { max-width: 610px; color: #aaaabd; line-height: 1.75; }
+        .details { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 34px 0 0; }
+        .details div { padding: 18px; border: 1px solid rgba(255,255,255,.08); border-radius: 16px; background: rgba(255,255,255,.035); }
+        .details div:first-child, .details div:nth-child(2) { border-color: rgba(236,72,153,.22); background: linear-gradient(135deg, rgba(236,72,153,.11), rgba(139,92,246,.08)); }
+        dt { color: #74748c; font-size: .68rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+        dd { margin: 7px 0 0; color: #f7f7ff; font-weight: 700; line-height: 1.4; }
+        @media (max-width: 760px) { .nav { align-items: flex-start; flex-direction: column; } .profile { grid-template-columns: 1fr; } .sidebar { min-height: 330px; } .details { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -52,7 +60,7 @@ $profile_url = $escape(site_url('student/profile'));
     <section class="profile">
         <aside class="sidebar">
             <div class="monogram">AF</div>
-            <small>Protected by<br>StudentMiddleware</small>
+            <div class="identity"><strong>Aljon Vincent<br>E. Ferriol</strong><small>Web Systems &amp; Technologies<br>Laboratory 03</small><span class="verified">Middleware verified</span></div>
         </aside>
 
         <div class="content">
