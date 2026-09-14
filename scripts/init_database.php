@@ -19,7 +19,9 @@ $options = [
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
 ];
 
-if ($sslCa !== '' && defined('PDO::MYSQL_ATTR_SSL_CA')) {
+if ($sslCa !== '' && defined('Pdo\\Mysql::ATTR_SSL_CA')) {
+    $options[\Pdo\Mysql::ATTR_SSL_CA] = $sslCa;
+} elseif ($sslCa !== '' && defined('PDO::MYSQL_ATTR_SSL_CA')) {
     $options[PDO::MYSQL_ATTR_SSL_CA] = $sslCa;
 }
 
