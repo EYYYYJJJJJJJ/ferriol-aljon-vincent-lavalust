@@ -13,7 +13,7 @@ class StudentController extends Controller
     {
         return [
             'student_id' => 'MCC2024-00076',
-            'name' => 'Jhon Joseph Evora',
+            'name' => 'Aljon Vincent E. Ferriol',
             'course' => 'BS Information Technology',
             'year_level' => '3rd Year',
             'section' => 'F2',
@@ -27,7 +27,7 @@ class StudentController extends Controller
 
         $this->call->view('student/index', [
             'student' => $this->student_data(),
-            'title' => 'Evora Student Hub',
+            'title' => 'Ferriol Student Hub',
             'notice' => $this->session->flashdata('student_access_message'),
         ]);
     }
@@ -36,7 +36,7 @@ class StudentController extends Controller
     {
         $this->call->view('student/profile', [
             'student' => $this->student_data(),
-            'title' => 'Jhon Joseph Evora | Student Profile',
+            'title' => 'Aljon Vincent E. Ferriol | Student Profile',
         ]);
     }
 }

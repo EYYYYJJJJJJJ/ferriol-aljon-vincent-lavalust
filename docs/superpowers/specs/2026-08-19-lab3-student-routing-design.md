@@ -15,7 +15,7 @@ Add the Lab 3 Student Information application to the existing LavaLust project u
 - Redirect unauthorized profile requests to `/student`.
 - Add working Home and Student Profile links using LavaLust's URL helper.
 - Use the student's own information:
-  - Name: Jhon Joseph Evora
+  - Name: Aljon Vincent E. Ferriol
   - Student ID: MCC2024-00076
   - Course: BS Information Technology
   - Year Level: 3rd Year

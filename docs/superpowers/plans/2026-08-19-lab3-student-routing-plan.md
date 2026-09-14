@@ -17,7 +17,7 @@
 - Register middleware aliases in `app/config/middleware.php` using `load_class()`.
 - Define routes in `app/config/routes.php` using LavaLust's `::` controller separator.
 - Use LavaLust's `site_url()` helper for navigation links.
-- Display the confirmed student data exactly: Jhon Joseph Evora, MCC2024-00076, BS Information Technology, 3rd Year, F2, evora.jhonj@minsu.edu.ph.
+- Display the confirmed student data exactly: Aljon Vincent E. Ferriol, MCC2024-00076, BS Information Technology, 3rd Year, F2, evora.jhonj@minsu.edu.ph.
 - Do not modify the framework files under `scheme/`.
 
 ---
@@ -67,7 +67,7 @@ expect_true(str_contains($controller, 'class StudentController extends Controlle
 expect_true(str_contains($controller, 'function index'), 'controller index method missing');
 expect_true(str_contains($controller, 'function profile'), 'controller profile method missing');
 expect_true(str_contains($controller, "'student_id' => 'MCC2024-00076'"), 'student ID missing');
-expect_true(str_contains($controller, "'name' => 'Jhon Joseph Evora'"), 'student name missing');
+expect_true(str_contains($controller, "'name' => 'Aljon Vincent E. Ferriol'"), 'student name missing');
 expect_true(str_contains($controller, "'course' => 'BS Information Technology'"), 'course missing');
 expect_true(str_contains($controller, "'year_level' => '3rd Year'"), 'year level missing');
 expect_true(str_contains($controller, "'section' => 'F2'"), 'section missing');
@@ -123,7 +123,7 @@ class StudentController extends Controller
     {
         return [
             'student_id' => 'MCC2024-00076',
-            'name' => 'Jhon Joseph Evora',
+            'name' => 'Aljon Vincent E. Ferriol',
             'course' => 'BS Information Technology',
             'year_level' => '3rd Year',
             'section' => 'F2',
@@ -137,7 +137,7 @@ class StudentController extends Controller
 
         $this->call->view('student/index', [
             'student' => $this->student_data(),
-            'title' => 'Evora Student Hub',
+            'title' => 'Ferriol Student Hub',
         ]);
     }
 
@@ -145,7 +145,7 @@ class StudentController extends Controller
     {
         $this->call->view('student/profile', [
             'student' => $this->student_data(),
-            'title' => 'Jhon Joseph Evora | Student Profile',
+            'title' => 'Aljon Vincent E. Ferriol | Student Profile',
         ]);
     }
 }

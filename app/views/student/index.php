@@ -43,7 +43,7 @@ $profile_url = $escape(site_url('student/profile'));
 <body>
 <main class="shell">
     <nav class="nav" aria-label="Student navigation">
-        <a class="brand" href="<?= $home_url ?>">Evora / Student Hub</a>
+        <a class="brand" href="<?= $home_url ?>">Ferriol / Student Hub</a>
         <div class="links">
             <a class="active" href="<?= $home_url ?>">Home</a>
             <a href="<?= $profile_url ?>">Student Profile</a>

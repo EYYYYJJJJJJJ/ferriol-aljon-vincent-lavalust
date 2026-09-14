@@ -29,7 +29,7 @@ expect_true(str_contains($controller, 'class StudentController extends Controlle
 expect_true(str_contains($controller, 'function index'), 'controller index method missing');
 expect_true(str_contains($controller, 'function profile'), 'controller profile method missing');
 expect_true(str_contains($controller, "'student_id' => 'MCC2024-00076'"), 'student ID missing');
-expect_true(str_contains($controller, "'name' => 'Jhon Joseph Evora'"), 'student name missing');
+expect_true(str_contains($controller, "'name' => 'Aljon Vincent E. Ferriol'"), 'student name missing');
 expect_true(str_contains($controller, "'course' => 'BS Information Technology'"), 'course missing');
 expect_true(str_contains($controller, "'year_level' => '3rd Year'"), 'year level missing');
 expect_true(str_contains($controller, "'section' => 'F2'"), 'section missing');
