@@ -26,7 +26,7 @@ $routes = file_text($root, 'app/config/routes.php');
 $login_view = file_text($root, 'app/views/auth/login.php');
 $products_view = file_text($root, 'app/views/products/index.php');
 $form_view = file_text($root, 'app/views/products/form.php');
-$schema = file_text($root, 'tmp/lab5/schema.sql');
+$schema = file_text($root, 'database/schema.sql');
 $env_example = file_text($root, '.env.example');
 
 expect_true(str_contains($model, 'class ProductModel extends Model'), 'ProductModel class missing');

@@ -19,3 +19,7 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
 EXPOSE 80
+
+# Initialize the Aiven schema before Apache starts. The initializer is
+# idempotent, so restarts preserve existing records.
+CMD ["bash", "-c", "php /var/www/html/scripts/init_database.php && apache2-foreground"]
