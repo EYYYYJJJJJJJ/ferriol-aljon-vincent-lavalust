@@ -15,11 +15,8 @@ $escape = static function ($value) {
 </head>
 <body class="login-body">
     <main class="login-card">
-        <div class="login-brand">
-            <span class="brand-mark brand-mark-large">AF</span>
-            <span class="eyebrow">Activity 5</span>
-        </div>
-        <h1>Welcome back</h1>
+        <span class="eyebrow">Activity 5</span>
+        <h1>Product Login</h1>
         <p class="login-copy">Sign in to manage your product inventory.</p>
 
         <?php if (!empty($error)): ?><p class="alert alert-error"><?= $escape($error) ?></p><?php endif; ?>
@@ -36,7 +33,6 @@ $escape = static function ($value) {
             </div>
             <button class="button button-primary login-button" type="submit">Sign in</button>
         </form>
-        <p class="login-footer">Product Management System · Aljon Vincent E. Ferriol</p>
     </main>
 </body>
 </html>

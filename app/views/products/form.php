@@ -18,16 +18,12 @@ $product = $product ?? [];
 <body>
 <div class="form-page">
     <nav class="form-nav">
-        <a class="brand" href="<?= $escape(site_url('products')) ?>">
-            <span class="brand-mark">AF</span>
-            <span><strong>SimpleStock</strong><small>Activity 5</small></span>
-        </a>
+        <a class="brand-simple" href="<?= $escape(site_url('products')) ?>">Activity 5</a>
         <a class="back-link" href="<?= $escape(site_url('products')) ?>">← Back to products</a>
     </nav>
 
     <main class="form-card">
         <div class="form-heading">
-            <span class="eyebrow"><?= $editing ? 'Edit item' : 'New item' ?></span>
             <h1><?= $escape($title) ?></h1>
             <p><?= $editing ? 'Update the product information below.' : 'Enter the details of the new product.' ?></p>
         </div>
