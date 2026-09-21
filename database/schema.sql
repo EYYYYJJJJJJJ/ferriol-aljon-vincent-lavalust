@@ -23,13 +23,13 @@ INSERT IGNORE INTO users (firstname, lastname, email, username) VALUES
 ('Jose', 'Mendoza', 'jose@example.com', 'josemendoza');
 
 INSERT INTO products (product_name, description, price, quantity)
-SELECT 'Laptop Stand', 'Adjustable aluminum laptop stand', 899.00, 12
+SELECT 'Mechanical Keyboard', 'Compact keyboard with tactile switches', 1899.00, 15
 WHERE NOT EXISTS (SELECT 1 FROM products);
 
 INSERT INTO products (product_name, description, price, quantity)
-SELECT 'Wireless Mouse', 'Compact wireless mouse', 549.00, 25
+SELECT 'Bluetooth Headphones', 'Wireless over-ear headphones with clear sound', 1499.00, 20
 WHERE (SELECT COUNT(*) FROM products) = 1;
 
 INSERT INTO products (product_name, description, price, quantity)
-SELECT 'USB-C Hub', 'Multi-port USB-C adapter', 1299.00, 8
+SELECT 'Portable SSD 1TB', 'Fast and compact external solid-state drive', 3299.00, 8
 WHERE (SELECT COUNT(*) FROM products) = 2;

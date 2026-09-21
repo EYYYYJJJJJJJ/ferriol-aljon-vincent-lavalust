@@ -11,31 +11,32 @@ $escape = static function ($value) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $escape($title) ?></title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; min-height: 100vh; display: grid; place-items: center; background: #f3f4f6; color: #111827; }
-        .card { width: min(420px, calc(100% - 32px)); padding: 28px; border: 1px solid #d1d5db; border-radius: 12px; background: #fff; }
-        h1 { margin-top: 0; }
-        label { display: block; margin-top: 14px; font-weight: 700; }
-        input { width: 100%; margin-top: 6px; padding: 10px; border: 1px solid #9ca3af; border-radius: 6px; box-sizing: border-box; }
-        button { width: 100%; margin-top: 20px; padding: 11px; border: 0; border-radius: 6px; color: #fff; background: #1d4ed8; cursor: pointer; }
-        .error, .notice { padding: 10px; border-radius: 6px; }
-        .error { color: #991b1b; background: #fee2e2; }
-        .notice { color: #1e3a8a; background: #dbeafe; }
-    </style>
+    <link rel="stylesheet" href="/public/css/lab5.css">
 </head>
-<body>
-    <main class="card">
-        <h1>Product Management Login</h1>
-        <p>Log in to access the Lab 5 CRUD application.</p>
-        <?php if (!empty($error)): ?><p class="error"><?= $escape($error) ?></p><?php endif; ?>
-        <?php if (!empty($notice)): ?><p class="notice"><?= $escape($notice) ?></p><?php endif; ?>
-        <form method="post" action="<?= $escape(site_url('login')) ?>">
-            <label for="username">Username</label>
-            <input id="username" name="username" value="<?= $escape($username ?? '') ?>" required>
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password" required>
-            <button type="submit">Log in</button>
+<body class="login-body">
+    <main class="login-card">
+        <div class="login-brand">
+            <span class="brand-mark brand-mark-large">AF</span>
+            <span class="eyebrow">Activity 5</span>
+        </div>
+        <h1>Welcome back</h1>
+        <p class="login-copy">Sign in to manage your product inventory.</p>
+
+        <?php if (!empty($error)): ?><p class="alert alert-error"><?= $escape($error) ?></p><?php endif; ?>
+        <?php if (!empty($notice)): ?><p class="alert alert-info"><?= $escape($notice) ?></p><?php endif; ?>
+
+        <form class="login-form" method="post" action="<?= $escape(site_url('login')) ?>">
+            <div class="field field-full">
+                <label for="username">Username</label>
+                <input id="username" name="username" placeholder="Enter your username" value="<?= $escape($username ?? '') ?>" autocomplete="username" required>
+            </div>
+            <div class="field field-full">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+            </div>
+            <button class="button button-primary login-button" type="submit">Sign in</button>
         </form>
+        <p class="login-footer">Product Management System · Aljon Vincent E. Ferriol</p>
     </main>
 </body>
 </html>

@@ -13,37 +13,55 @@ $product = $product ?? [];
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $escape($title) ?></title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; background: #f3f4f6; color: #111827; }
-        .card { width: min(640px, calc(100% - 32px)); margin: 40px auto; padding: 28px; border: 1px solid #d1d5db; border-radius: 12px; background: #fff; }
-        h1 { margin-top: 0; }
-        label { display: block; margin-top: 14px; font-weight: 700; }
-        input, textarea { width: 100%; margin-top: 6px; padding: 10px; border: 1px solid #9ca3af; border-radius: 6px; box-sizing: border-box; font: inherit; }
-        textarea { min-height: 110px; resize: vertical; }
-        button, a { display: inline-block; margin-top: 20px; padding: 10px 14px; border: 0; border-radius: 6px; text-decoration: none; cursor: pointer; }
-        button { color: #fff; background: #1d4ed8; }
-        a { color: #374151; background: #e5e7eb; }
-        .errors { padding: 10px 28px; color: #991b1b; background: #fee2e2; border-radius: 6px; }
-    </style>
+    <link rel="stylesheet" href="/public/css/lab5.css">
 </head>
 <body>
-<main class="card">
-    <h1><?= $escape($title) ?></h1>
-    <?php if (!empty($errors)): ?>
-        <div class="errors"><ul><?php foreach ($errors as $error): ?><li><?= $escape($error) ?></li><?php endforeach; ?></ul></div>
-    <?php endif; ?>
-    <form method="post" action="<?= $escape($form_action) ?>">
-        <label for="product_name">Product name</label>
-        <input id="product_name" name="product_name" maxlength="100" value="<?= $escape($product['product_name'] ?? '') ?>" required>
-        <label for="description">Description</label>
-        <textarea id="description" name="description" required><?= $escape($product['description'] ?? '') ?></textarea>
-        <label for="price">Price</label>
-        <input id="price" name="price" type="number" min="0" step="0.01" value="<?= $escape($product['price'] ?? '') ?>" required>
-        <label for="quantity">Quantity</label>
-        <input id="quantity" name="quantity" type="number" min="0" step="1" value="<?= $escape($product['quantity'] ?? '') ?>" required>
-        <button type="submit"><?= $editing ? 'Update product' : 'Save product' ?></button>
-        <a href="<?= $escape(site_url('products')) ?>">Cancel</a>
-    </form>
-</main>
+<div class="form-page">
+    <nav class="form-nav">
+        <a class="brand" href="<?= $escape(site_url('products')) ?>">
+            <span class="brand-mark">AF</span>
+            <span><strong>SimpleStock</strong><small>Activity 5</small></span>
+        </a>
+        <a class="back-link" href="<?= $escape(site_url('products')) ?>">← Back to products</a>
+    </nav>
+
+    <main class="form-card">
+        <div class="form-heading">
+            <span class="eyebrow"><?= $editing ? 'Edit item' : 'New item' ?></span>
+            <h1><?= $escape($title) ?></h1>
+            <p><?= $editing ? 'Update the product information below.' : 'Enter the details of the new product.' ?></p>
+        </div>
+
+        <?php if (!empty($errors)): ?>
+            <div class="alert alert-error">
+                <strong>Please check the form:</strong>
+                <ul><?php foreach ($errors as $error): ?><li><?= $escape($error) ?></li><?php endforeach; ?></ul>
+            </div>
+        <?php endif; ?>
+
+        <form class="product-form" method="post" action="<?= $escape($form_action) ?>">
+            <div class="field field-full">
+                <label for="product_name">Product name</label>
+                <input id="product_name" name="product_name" maxlength="100" placeholder="e.g. Mechanical Keyboard" value="<?= $escape($product['product_name'] ?? '') ?>" required>
+            </div>
+            <div class="field field-full">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" placeholder="Short product description" required><?= $escape($product['description'] ?? '') ?></textarea>
+            </div>
+            <div class="field">
+                <label for="price">Price (₱)</label>
+                <input id="price" name="price" type="number" min="0" step="0.01" placeholder="0.00" value="<?= $escape($product['price'] ?? '') ?>" required>
+            </div>
+            <div class="field">
+                <label for="quantity">Quantity</label>
+                <input id="quantity" name="quantity" type="number" min="0" step="1" placeholder="0" value="<?= $escape($product['quantity'] ?? '') ?>" required>
+            </div>
+            <div class="form-actions field-full">
+                <a class="button button-ghost" href="<?= $escape(site_url('products')) ?>">Cancel</a>
+                <button class="button button-primary" type="submit"><?= $editing ? 'Save changes' : 'Add product' ?></button>
+            </div>
+        </form>
+    </main>
+</div>
 </body>
 </html>
