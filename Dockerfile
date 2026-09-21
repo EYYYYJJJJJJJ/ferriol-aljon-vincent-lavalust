@@ -2,8 +2,8 @@ ARG PHP_VERSION=8.5
 
 FROM php:${PHP_VERSION}-apache
 
-# Install PDO MySQL
-RUN docker-php-ext-install pdo pdo_mysql
+# Install the Aiven/MySQL driver plus the local deployment fallback.
+RUN docker-php-ext-install pdo pdo_mysql pdo_sqlite
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
@@ -20,6 +20,6 @@ RUN chown -R www-data:www-data /var/www/html \
 
 EXPOSE 80
 
-# Initialize the Aiven schema before Apache starts. The initializer is
-# idempotent, so restarts preserve existing records.
+# Prefer Aiven, but initialize a local SQLite database when the remote service
+# is unavailable so the Lab 5 CRUD application can still start.
 CMD ["bash", "-c", "php /var/www/html/scripts/init_database.php && apache2-foreground"]
