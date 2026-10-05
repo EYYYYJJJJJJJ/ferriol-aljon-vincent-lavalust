@@ -51,6 +51,7 @@ try {
         throw new RuntimeException('Set AUTH_PASSWORD before initializing the Lab 6 login account.');
     }
     $email = getenv('AUTH_EMAIL') ?: 'ferriol.aljone@minsu.edu.ph';
+    $configuredEmail = $email;
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) throw new RuntimeException('AUTH_EMAIL must be a valid email address.');
     if (strlen($username) > 100 || strlen($email) > 150) throw new RuntimeException('The configured username or email is too long.');
 
@@ -59,6 +60,7 @@ try {
     $lookup->execute(['username' => $username]);
     $user = $lookup->fetch();
     if ($user) {
+        $accountId = (int) $user['id'];
         $emailOwner = $pdo->prepare('SELECT id FROM users WHERE email = :email AND id <> :id');
         $emailOwner->execute(['email' => $email, 'id' => $user['id']]);
         if (!$emailOwner->fetchColumn()) {
@@ -99,7 +101,22 @@ try {
             'firstname' => 'Aljon Vincent', 'lastname' => 'Ferriol', 'email' => $email,
             'username' => $username, 'password' => password_hash($password, PASSWORD_DEFAULT), 'role' => 'user',
         ]);
+        $accountId = (int) $pdo->lastInsertId();
         if ($attempt > 0) echo "The requested email already belongs to another user; its row was preserved and a unique seed-account email was used.\n";
+    }
+
+    // Remove the obsolete Lab 4 seed identity after the configured account is
+    // ready. This keeps the deployed users table from showing two records for
+    // the same student after the school email and username were corrected.
+    if ($username === 'aljon' && strcasecmp($configuredEmail, 'ferriol.aljone@minsu.edu.ph') === 0) {
+        $removeLegacyIdentity = $pdo->prepare('DELETE FROM users
+            WHERE id <> :id
+              AND (LOWER(email) = :legacy_email OR LOWER(username) = :legacy_username)');
+        $removeLegacyIdentity->execute([
+            'id' => $accountId,
+            'legacy_email' => 'aljon.ferriol@example.com',
+            'legacy_username' => 'aljonferriol',
+        ]);
     }
     $pdo->commit();
     echo "Lab 6 database and configured login account are ready.\n";
