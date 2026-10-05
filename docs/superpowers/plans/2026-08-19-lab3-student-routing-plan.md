@@ -17,7 +17,7 @@
 - Register middleware aliases in `app/config/middleware.php` using `load_class()`.
 - Define routes in `app/config/routes.php` using LavaLust's `::` controller separator.
 - Use LavaLust's `site_url()` helper for navigation links.
-- Display the confirmed student data exactly: Aljon Vincent E. Ferriol, MCC2024-00076, BS Information Technology, 3rd Year, F2, evora.jhonj@minsu.edu.ph.
+- Display the confirmed student data exactly: Aljon Vincent E. Ferriol, MCC2024-00052, BS Information Technology, 3rd Year, F2, ferriol.aljone@minsu.edu.ph.
 - Do not modify the framework files under `scheme/`.
 
 ---
@@ -66,12 +66,12 @@ $profile_view = file_text($root, 'app/views/student/profile.php');
 expect_true(str_contains($controller, 'class StudentController extends Controller'), 'controller class missing');
 expect_true(str_contains($controller, 'function index'), 'controller index method missing');
 expect_true(str_contains($controller, 'function profile'), 'controller profile method missing');
-expect_true(str_contains($controller, "'student_id' => 'MCC2024-00076'"), 'student ID missing');
+expect_true(str_contains($controller, "'student_id' => 'MCC2024-00052'"), 'student ID missing');
 expect_true(str_contains($controller, "'name' => 'Aljon Vincent E. Ferriol'"), 'student name missing');
 expect_true(str_contains($controller, "'course' => 'BS Information Technology'"), 'course missing');
 expect_true(str_contains($controller, "'year_level' => '3rd Year'"), 'year level missing');
 expect_true(str_contains($controller, "'section' => 'F2'"), 'section missing');
-expect_true(str_contains($controller, "'email' => 'evora.jhonj@minsu.edu.ph'"), 'email missing');
+expect_true(str_contains($controller, "'email' => 'ferriol.aljone@minsu.edu.ph'"), 'email missing');
 expect_true(str_contains($routes, "'/student', 'StudentController::index'"), 'student route missing');
 expect_true(str_contains($routes, "'/student/profile', 'StudentController::profile'"), 'profile route missing');
 expect_true(str_contains($routes, "->middleware('student_access')"), 'profile middleware attachment missing');
@@ -122,12 +122,12 @@ class StudentController extends Controller
     private function student_data()
     {
         return [
-            'student_id' => 'MCC2024-00076',
+            'student_id' => 'MCC2024-00052',
             'name' => 'Aljon Vincent E. Ferriol',
             'course' => 'BS Information Technology',
             'year_level' => '3rd Year',
             'section' => 'F2',
-            'email' => 'evora.jhonj@minsu.edu.ph',
+            'email' => 'ferriol.aljone@minsu.edu.ph',
         ];
     }
 

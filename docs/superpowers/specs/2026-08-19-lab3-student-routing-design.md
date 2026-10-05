@@ -16,11 +16,11 @@ Add the Lab 3 Student Information application to the existing LavaLust project u
 - Add working Home and Student Profile links using LavaLust's URL helper.
 - Use the student's own information:
   - Name: Aljon Vincent E. Ferriol
-  - Student ID: MCC2024-00076
+  - Student ID: MCC2024-00052
   - Course: BS Information Technology
   - Year Level: 3rd Year
   - Section: F2
-  - Email: evora.jhonj@minsu.edu.ph
+  - Email: ferriol.aljone@minsu.edu.ph
 
 ## Architecture
 

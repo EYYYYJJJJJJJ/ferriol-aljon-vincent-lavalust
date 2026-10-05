@@ -34,5 +34,6 @@ $escape = static function ($value) {
             <button class="button button-primary login-button" type="submit">Sign in</button>
         </form>
     </main>
+    <footer class="student-footer">Aljon Vincent E. Ferriol &middot; MCC2024-00052 &middot; ferriol.aljone@minsu.edu.ph</footer>
 </body>
 </html>

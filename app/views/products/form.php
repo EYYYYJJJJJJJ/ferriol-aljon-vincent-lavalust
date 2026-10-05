@@ -58,6 +58,7 @@ $product = $product ?? [];
             </div>
         </form>
     </main>
+    <footer class="student-footer">Aljon Vincent E. Ferriol &middot; MCC2024-00052 &middot; ferriol.aljone@minsu.edu.ph</footer>
 </div>
 </body>
 </html>

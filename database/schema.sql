@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS products (
 );
 
 INSERT IGNORE INTO users (firstname, lastname, email, username) VALUES
-('Aljon Vincent', 'Ferriol', 'aljon.ferriol@example.com', 'aljonferriol'),
+('Aljon Vincent', 'Ferriol', 'ferriol.aljone@minsu.edu.ph', 'aljon'),
 ('Maria', 'Santos', 'maria@example.com', 'mariasantos'),
 ('Pedro', 'Garcia', 'pedro@example.com', 'pedrogarcia'),
 ('Ana', 'Reyes', 'ana@example.com', 'anareyes'),

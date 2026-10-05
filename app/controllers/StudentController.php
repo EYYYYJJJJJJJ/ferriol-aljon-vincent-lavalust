@@ -12,12 +12,12 @@ class StudentController extends Controller
     private function student_data()
     {
         return [
-            'student_id' => 'MCC2024-00076',
+            'student_id' => 'MCC2024-00052',
             'name' => 'Aljon Vincent E. Ferriol',
             'course' => 'BS Information Technology',
             'year_level' => '3rd Year',
             'section' => 'F2',
-            'email' => 'evora.jhonj@minsu.edu.ph',
+            'email' => 'ferriol.aljone@minsu.edu.ph',
         ];
     }
 

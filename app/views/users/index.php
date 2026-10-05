@@ -12,10 +12,12 @@
         th, td { border: 1px solid #cbd5e1; padding: 0.65rem; text-align: left; }
         th { background: #e2e8f0; }
         .empty { padding: 1rem; background: #f8fafc; }
+        .student-meta { margin: -0.45rem 0 1.2rem; color: #475569; }
     </style>
 </head>
 <body>
     <h1><?= html_escape($title ?? 'Users') ?></h1>
+    <p class="student-meta">Aljon Vincent E. Ferriol &middot; MCC2024-00052 &middot; ferriol.aljone@minsu.edu.ph</p>
 
     <?php if (empty($users)): ?>
         <p class="empty">No users found.</p>

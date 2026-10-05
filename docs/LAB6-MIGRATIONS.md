@@ -1,6 +1,8 @@
 # Laboratory Exercise 6: migrations
 
-Student: Aljon Vincent E. Ferriol
+- Student: Aljon Vincent E. Ferriol
+- Student ID: MCC2024-00052
+- Email: ferriol.aljone@minsu.edu.ph
 
 Lab 6 uses LavaLust's `Migration` library with the dedicated directory `app/migrations/lab6/` and tracking table `migrations_lab6`. The historical migrations outside this directory are not restored or run. MySQL uses DBForge; the bundled SQLite fallback uses equivalent SQL because this version of DBForge generates MySQL syntax.
 

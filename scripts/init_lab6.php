@@ -50,7 +50,7 @@ try {
     if ($password === false || $password === '') {
         throw new RuntimeException('Set AUTH_PASSWORD before initializing the Lab 6 login account.');
     }
-    $email = getenv('AUTH_EMAIL') ?: 'aljon.ferriol@example.com';
+    $email = getenv('AUTH_EMAIL') ?: 'ferriol.aljone@minsu.edu.ph';
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) throw new RuntimeException('AUTH_EMAIL must be a valid email address.');
     if (strlen($username) > 100 || strlen($email) > 150) throw new RuntimeException('The configured username or email is too long.');
 
@@ -59,6 +59,19 @@ try {
     $lookup->execute(['username' => $username]);
     $user = $lookup->fetch();
     if ($user) {
+        $emailOwner = $pdo->prepare('SELECT id FROM users WHERE email = :email AND id <> :id');
+        $emailOwner->execute(['email' => $email, 'id' => $user['id']]);
+        if (!$emailOwner->fetchColumn()) {
+            $identityUpdate = $pdo->prepare('UPDATE users
+                SET firstname = :firstname, lastname = :lastname, email = :email
+                WHERE id = :id');
+            $identityUpdate->execute([
+                'firstname' => 'Aljon Vincent',
+                'lastname' => 'Ferriol',
+                'email' => $email,
+                'id' => $user['id'],
+            ]);
+        }
         if (!$user['password'] || !password_verify($password, $user['password']) || password_needs_rehash($user['password'], PASSWORD_DEFAULT)) {
             $update = $pdo->prepare('UPDATE users SET password = :password WHERE id = :id');
             $update->execute(['password' => password_hash($password, PASSWORD_DEFAULT), 'id' => $user['id']]);

@@ -1,6 +1,8 @@
 # Laboratory Exercise 6: LavaLust API
 
-Student: Aljon Vincent E. Ferriol
+- Student: Aljon Vincent E. Ferriol
+- Student ID: MCC2024-00052
+- Email: ferriol.aljone@minsu.edu.ph
 
 This backend exposes the authenticated product API used by the separate Vue frontend. It preserves the server-rendered Labs 1–5 routes.
 
@@ -33,7 +35,7 @@ JWT_SECRET=<random value of at least 32 characters>
 REFRESH_TOKEN_KEY=<different random value of at least 32 characters>
 AUTH_USERNAME=aljon
 AUTH_PASSWORD=<deployment secret>
-AUTH_EMAIL=aljon.ferriol@example.com
+AUTH_EMAIL=ferriol.aljone@minsu.edu.ph
 API_ALLOWED_ORIGINS=https://YOUR-FRONTEND.onrender.com
 ```
 

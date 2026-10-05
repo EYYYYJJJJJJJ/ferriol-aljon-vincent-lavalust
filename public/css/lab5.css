@@ -116,6 +116,7 @@ tbody tr:hover { background: #fbfdff; }
 .login-form { display: grid; gap: 17px; }
 .login-button { width: 100%; margin-top: 3px; }
 .login-footer { margin: 26px 0 0; color: #98a2b3; font-size: 11px; text-align: center; }
+.student-footer { position: fixed; right: 16px; bottom: 12px; left: 16px; color: #6b7280; font-size: 12px; text-align: center; pointer-events: none; }
 
 @media (max-width: 760px) {
     .topbar, .form-nav, .page-content { width: min(100% - 28px, 1180px); }
