@@ -20,6 +20,8 @@ runtime/*
 # Local artifacts
 /tmp/
 /output/
+/.local-stack/
+/lab6-frontend/
 
 # IDE
 .idea/

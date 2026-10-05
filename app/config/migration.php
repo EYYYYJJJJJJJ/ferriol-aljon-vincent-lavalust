@@ -44,7 +44,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 | and disable it back when you're done.
 |
 */
-$config['migration_enabled'] = FALSE;
+$config['migration_enabled'] = PHP_SAPI === 'cli';
 
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ $config['migration_enabled'] = FALSE;
 | This is the name of the table that will store the current migrations state.
 |
 */
-$config['migration_table'] = 'migrations';
+$config['migration_table'] = 'migrations_lab6';
 
 /*
 |--------------------------------------------------------------------------
@@ -66,4 +66,4 @@ $config['migration_table'] = 'migrations';
 | Also, writing permission is required within the migrations path.
 |
 */
-$config['migration_path'] = APP_DIR.'migrations/';
+$config['migration_path'] = APP_DIR.'migrations/lab6/';

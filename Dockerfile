@@ -23,6 +23,5 @@ RUN chown -R www-data:www-data /var/www/html \
 
 EXPOSE 80
 
-# Prefer Aiven, but initialize a local SQLite database when the remote service
-# is unavailable so the Lab 5 CRUD application can still start.
-CMD ["bash", "-c", "php /var/www/html/scripts/init_database.php && apache2-foreground"]
+# Prepare the earlier lab schema, apply Lab 6 migrations, and then start Apache.
+CMD ["bash", "-c", "php /var/www/html/scripts/init_database.php && php /var/www/html/scripts/init_lab6.php && apache2-foreground"]

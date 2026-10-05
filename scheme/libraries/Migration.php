@@ -67,7 +67,7 @@ class Migration {
         $this->_lava->config->load('migration');
 
         if (!config_item('migration_enabled')) {
-            $this->error('Migrations are disabled in the configuration.');
+            throw new RuntimeException('Migrations are disabled in the configuration.');
         }
 
         $this->migrations_folder = config_item('migration_path');
@@ -95,6 +95,18 @@ class Migration {
     {
         $table = $this->migration_table;
 
+        if (!preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/', $table)) {
+            throw new InvalidArgumentException('Invalid migration tracking table.');
+        }
+        if ((database_config()['main']['driver'] ?? 'mysql') === 'sqlite') {
+            $this->_lava->db->raw("CREATE TABLE IF NOT EXISTS `{$table}` (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                migration INTEGER NOT NULL UNIQUE,
+                applied_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+            )");
+            return;
+        }
+
         $this->_lava->db->raw("
             CREATE TABLE IF NOT EXISTS `{$table}` (
                 `id`         INT      NOT NULL AUTO_INCREMENT,
@@ -118,11 +130,20 @@ class Migration {
      */
     public function create_migration($migration_name)
     {
+        if (!preg_match('/^[a-z][a-z0-9_]*$/', (string) $migration_name)) {
+            throw new InvalidArgumentException('Use a lowercase snake_case migration name.');
+        }
         $latest_version = $this->get_latest_migration_version();
+        if ($latest_version >= 999) {
+            throw new RuntimeException('The three-digit migration version limit was reached.');
+        }
         $new_version    = str_pad($latest_version + 1, 3, '0', STR_PAD_LEFT);
 
         $filename = "{$new_version}_{$migration_name}.php";
         $filepath = $this->migrations_folder . $filename;
+        if (is_file($filepath)) {
+            throw new RuntimeException('Migration file already exists.');
+        }
 
         $class_name = ucfirst(str_replace(['-', ' '], '_', $migration_name));
 
@@ -352,7 +373,9 @@ EOT;
     protected function get_applied_migrations()
     {
         $stmt = $this->_lava->db->raw("SELECT migration FROM {$this->migration_table}");
-        return $stmt->fetchAll(PDO::FETCH_COLUMN);
+        $versions = array_map('intval', $stmt->fetchAll(PDO::FETCH_COLUMN));
+        sort($versions, SORT_NUMERIC);
+        return $versions;
     }
 
     /**

@@ -154,3 +154,13 @@ $config['rate_limit_requests'] = 60;
 |
 */
 $config['rate_limit_seconds'] = 60;
+
+// Activity 6: secrets come from the environment, never from source control.
+$appKey = getenv('APP_KEY') ?: '';
+$config['api_helper_enabled'] = true;
+$config['jwt_secret'] = getenv('JWT_SECRET') ?: (strlen($appKey) >= 32 ? hash_hmac('sha256', 'lab6-access', $appKey) : '');
+$config['refresh_token_key'] = getenv('REFRESH_TOKEN_KEY') ?: (strlen($appKey) >= 32 ? hash_hmac('sha256', 'lab6-refresh', $appKey) : '');
+$config['jwt_issuer'] = 'ferriol-lavalust-api';
+$config['jwt_audience'] = 'ferriol-lab6-frontend';
+$config['allow_origin'] = array_values(array_filter(array_map('trim', explode(',', getenv('API_ALLOWED_ORIGINS') ?: 'http://localhost:5173,http://127.0.0.1:5173'))));
+$config['rate_limit_enabled'] = getenv('API_RATE_LIMIT_ENABLED') !== 'false';

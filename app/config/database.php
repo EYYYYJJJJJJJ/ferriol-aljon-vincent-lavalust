@@ -59,9 +59,9 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 $runtimePath = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'runtime';
 $driverMarkerPath = $runtimePath . DIRECTORY_SEPARATOR . 'database_driver';
-$selectedDriver = is_file($driverMarkerPath)
+$selectedDriver = getenv('DB_DRIVER') ?: (is_file($driverMarkerPath)
     ? trim((string) file_get_contents($driverMarkerPath))
-    : 'mysql';
+    : 'mysql');
 $selectedDriver = in_array($selectedDriver, array('mysql', 'sqlite'), true)
     ? $selectedDriver
     : 'mysql';
@@ -77,7 +77,7 @@ $database['main'] = array(
     'charset'	=> 'utf8mb4',
     'dbprefix'	=> '',
     'path'      => $selectedDriver === 'sqlite'
-        ? $runtimePath . DIRECTORY_SEPARATOR . 'lavalust.sqlite'
+        ? (getenv('DB_SQLITE_PATH') ?: $runtimePath . DIRECTORY_SEPARATOR . 'lavalust.sqlite')
         : ''
 );
 

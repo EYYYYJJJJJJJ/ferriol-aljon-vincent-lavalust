@@ -80,6 +80,10 @@ function connectToAiven(): ?PDO
 $pdo = connectToAiven();
 $driver = 'mysql';
 
+if ($pdo === null && strtolower(getenv('REQUIRE_MYSQL') ?: 'false') === 'true') {
+    throw new RuntimeException('Aiven MySQL is required but could not be reached.');
+}
+
 if ($pdo !== null) {
     applySchema($pdo, $rootPath . '/database/schema.sql');
     fwrite(STDOUT, "Aiven database schema is ready.\n");

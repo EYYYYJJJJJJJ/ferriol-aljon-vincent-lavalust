@@ -528,6 +528,7 @@ class Api
             'sub'  => $user_id,
             'type' => 'refresh',
             'jti'  => bin2hex(random_bytes(16)),
+            'exp'  => $now + $this->refresh_token_expiration,
         ];
 
         $access_token  = $this->encode_jwt($access_payload);
@@ -571,7 +572,7 @@ class Api
 
         $stmt = $this->_lava->db->raw(
             "SELECT * FROM {$this->refresh_token_table} 
-             WHERE token = ? AND expires_at > NOW() LIMIT 1",
+             WHERE token = ? AND expires_at > CURRENT_TIMESTAMP LIMIT 1",
             [$hashed]
         );
         $found = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -614,7 +615,7 @@ class Api
      */
     public function cleanup_expired_refresh_tokens($user_id = null): void
     {
-        $sql = "DELETE FROM {$this->refresh_token_table} WHERE expires_at < NOW()";
+        $sql = "DELETE FROM {$this->refresh_token_table} WHERE expires_at < CURRENT_TIMESTAMP";
         $params = [];
 
         if ($user_id !== null) {
