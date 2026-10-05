@@ -23,5 +23,6 @@ RUN chown -R www-data:www-data /var/www/html \
 
 EXPOSE 80
 
-# Prepare the earlier lab schema, apply Lab 6 migrations, and then start Apache.
-CMD ["bash", "-c", "php /var/www/html/scripts/init_database.php && php /var/www/html/scripts/init_lab6.php && apache2-foreground"]
+# Render assigns a PORT at runtime. Keep port 80 locally, and bind Apache to the
+# assigned public port in production before applying forward-only migrations.
+CMD ["bash", "-c", "APP_PORT=${PORT:-80}; sed -i \"s/^Listen .*/Listen ${APP_PORT}/\" /etc/apache2/ports.conf; sed -i \"s/<VirtualHost \*:.*>/<VirtualHost *:${APP_PORT}>/\" /etc/apache2/sites-available/000-default.conf; php /var/www/html/scripts/init_database.php && php /var/www/html/scripts/init_lab6.php && exec apache2-foreground"]
