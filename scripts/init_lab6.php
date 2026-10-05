@@ -32,8 +32,13 @@ try {
         $pdo = new PDO('sqlite:' . $settings['path'], null, null, $options);
     } else {
         if (!empty($settings['ssl_ca'])) {
-            $options[PDO::MYSQL_ATTR_SSL_CA] = $settings['ssl_ca'];
-            $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = true;
+            if (defined('Pdo\\Mysql::ATTR_SSL_CA')) {
+                $options[\Pdo\Mysql::ATTR_SSL_CA] = $settings['ssl_ca'];
+                $options[\Pdo\Mysql::ATTR_SSL_VERIFY_SERVER_CERT] = true;
+            } else {
+                $options[PDO::MYSQL_ATTR_SSL_CA] = $settings['ssl_ca'];
+                $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = true;
+            }
         }
         $dsn = 'mysql:host=' . $settings['hostname'] . ';port=' . ($settings['port'] ?: '3306')
             . ';dbname=' . $settings['database'] . ';charset=utf8mb4';
