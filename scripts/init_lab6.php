@@ -111,10 +111,9 @@ try {
     if ($username === 'aljon' && strcasecmp($configuredEmail, 'ferriol.aljone@minsu.edu.ph') === 0) {
         $removeLegacyIdentity = $pdo->prepare('DELETE FROM users
             WHERE id <> :id
-              AND (LOWER(email) = :legacy_email OR LOWER(username) = :legacy_username)');
+              AND LOWER(username) = :legacy_username');
         $removeLegacyIdentity->execute([
             'id' => $accountId,
-            'legacy_email' => 'aljon.ferriol@example.com',
             'legacy_username' => 'aljonferriol',
         ]);
     }
