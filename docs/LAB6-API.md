@@ -4,6 +4,13 @@ Student: Aljon Vincent E. Ferriol
 
 This backend exposes the authenticated product API used by the separate Vue frontend. It preserves the server-rendered Labs 1–5 routes.
 
+## Submission links
+
+- Backend repository: https://github.com/EYYYYJJJJJJJ/ferriol-aljon-vincent-lavalust
+- Frontend repository: https://github.com/EYYYYJJJJJJJ/ferriol-aljon-vincent-lab6-frontend
+- Render API: https://ferriol-aljon-vincent.onrender.com/index.php/api
+- Render frontend: https://ferriol-aljon-vincent-lab6.onrender.com
+
 ## Endpoints
 
 - `POST /index.php/api/auth/login`
