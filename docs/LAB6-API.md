@@ -10,8 +10,8 @@ This backend exposes the authenticated product API used by the separate Vue fron
 
 - Backend repository: https://github.com/EYYYYJJJJJJJ/ferriol-aljon-vincent-lavalust
 - Frontend repository: https://github.com/EYYYYJJJJJJJ/ferriol-aljon-vincent-lab6-frontend
-- Render API: https://ferriol-aljon-vincent.onrender.com/index.php/api
-- Render frontend: https://ferriol-aljon-vincent-lab6.onrender.com
+- Render API URL: https://ferriol-aljon-vincent.onrender.com/index.php/api
+- Frontend URL: https://ferriol-aljon-vincent-lab6.onrender.com
 
 ## Endpoints
 
