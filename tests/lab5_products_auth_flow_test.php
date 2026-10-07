@@ -46,6 +46,10 @@ expect_true(str_contains($middleware_config, "'product_auth'"), 'product_auth mi
 foreach (["'/login'", "'/logout'", "'/products'", "'/products/create'", "'/products/edit/", "'/products/delete/"] as $route) {
     expect_true(str_contains($routes, $route), "route {$route} missing");
 }
+expect_true(
+    str_contains($routes, "\$router->get('/', 'AuthController::login')"),
+    'root URL must open the login page'
+);
 expect_true(str_contains($login_view, '<form'), 'login form missing');
 expect_true(str_contains($products_view, '<table'), 'products list table missing');
 expect_true(str_contains($form_view, 'product_name'), 'product form missing product_name');
